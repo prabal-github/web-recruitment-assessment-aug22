@@ -15,10 +15,10 @@ function App() {
   const [selectedOption, setselectedOption] = useState("")
   const [difficulty, setdifficulty] = useState("medium")
   const [category, setcategory] = useState('any')
-  const opentdb = require('opentdb-api');
   var optns = []
-
+  
   useEffect(() => {
+    const opentdb = require('opentdb-api');
     var apiStart = true;
     opentdb.getToken().then(newToken => {
 
