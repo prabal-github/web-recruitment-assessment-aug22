@@ -159,7 +159,7 @@ function App() {
               </div>
 
 
-              {questions.length > 0 && questions[0].difficulty == difficulty?
+              {questions.length > 0 && questions[0].difficulty == difficulty ?
                 <button className="w-full text-white font-bold text-md uppercase bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2" onClick={startquestioncount}>
                   Start
                 </button> :
@@ -200,13 +200,13 @@ function App() {
                   )
                 })}
               </div>
-                {!showAnswer?<button className="w-full mt-5 content-center text-white font-bold text-md uppercase bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
-                <div onClick={()=>setshowAnswer(true)}>Check Answer</div>
-              </button>:
-              <div className="text-2xl font-bold text-center">
-              Answer:- {questions[questionNumber].correct_answer}
-            </div>}
-              
+              {!showAnswer ? <button className="w-full mt-5 content-center text-white font-bold text-md uppercase bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
+                <div onClick={() => setshowAnswer(true)}>Check Answer</div>
+              </button> :
+                <div className="text-2xl font-bold text-center">
+                  Answer:- {questions[questionNumber].correct_answer}
+                </div>}
+
               <button className="w-full mt-5 content-center text-white font-bold text-md uppercase bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
                 <div onClick={nextquestion}>Next</div>
               </button>
@@ -221,10 +221,22 @@ function App() {
               <button className="w-full mt-5 content-center text-white font-bold text-md uppercase bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
                 <div onClick={() => reset()}>Reset</div>
               </button>
+
+              <div>
+                {
+                  score < 3 ? <img src="sad.jpg" className="h-21 m-5" /> :
+                    ((score === 3) ? <img src="medium.jpg" className="h-21 m-5" /> : <img src="very happy.jpg" className="h-21 m-5" />)
+                }
+
+              </div>
+
             </div>
+
 
             : <div></div>
           }
+
+
 
 
         </div>
