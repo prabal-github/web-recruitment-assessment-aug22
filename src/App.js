@@ -36,8 +36,6 @@ function App() {
         });
       }
     });
-    console.log(difficulty);
-    console.log(category);
 
     return () => {
       apiStart = false;
@@ -112,12 +110,11 @@ function App() {
             <div className="flex flex-col">
 
               <div className="mb-3">
-                <select required
+                <select required defaultValue={'any'}
                   onChange={(e) => { setcategory(e.target.value) }}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-500 dark:border-gray-300 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   aria-label="Default select example"
                 >
-                  <option selected disabled>Select Category</option>
                   <option value="any">Any (Default)</option>
                   <option value="general">General</option>
                   <option value="books">Books</option>
@@ -147,14 +144,14 @@ function App() {
               </div>
 
               <div className="mb-3">
-                <select required
+                <select required defaultValue={'hard'}
                   onChange={(e) => { setdifficulty(e.target.value) }}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   aria-label="Default select example"
                 >
                   <option value="easy">Easy</option>
                   <option value="medium">Medium</option>
-                  <option selected value="hard">Hard</option>
+                  <option value="hard">Hard</option>
                 </select>
               </div>
 
