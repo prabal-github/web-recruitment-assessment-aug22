@@ -15,7 +15,9 @@ function App() {
   const [selectedOption, setselectedOption] = useState("")
   const [difficulty, setdifficulty] = useState("hard")
   const [category, setcategory] = useState('any')
+  const [loaded, setloaded] = useState(true)
   const [showAnswer, setshowAnswer] = useState(false)
+
   var optns = []
 
   useEffect(() => {
@@ -33,6 +35,7 @@ function App() {
       if (apiStart) {
         opentdb.getTrivia(options).then(uniqueTrivia => {
           setquestions(uniqueTrivia)
+          setloaded(true)
         });
       }
     });
@@ -49,8 +52,6 @@ function App() {
     setstarted(true)
     var count = questionNumber;
     setquestionNumber(count + 1);
-
-    // console.log(questions);
 
     for (let i = 0; i < questions.length; i++) {
       optns[i] = questions[i].incorrect_answers;
@@ -72,16 +73,11 @@ function App() {
       }
     }
     setnewoptions(optns)
-    // console.log(newoptions);
-    // console.log(started);
-    // console.log(showScore);
   }
 
   const nextquestion = () => {
     var count = questionNumber;
     (questionNumber < 4) ? setquestionNumber(count + 1) : setShowScore(true);
-    // console.log(selectedOption);
-    // console.log(questions[questionNumber].correct_answer);
     if (questions[questionNumber].correct_answer === selectedOption) {
       var currentScore = score;
       setscore(currentScore + 1);
@@ -92,7 +88,6 @@ function App() {
   const reset = () => {
     setscore(0);
     setstarted(false)
-    // console.log('reset successfull');
     setShowScore(false)
     const resetUseeffect = start;
     setstart(resetUseeffect ? false : true);
@@ -100,8 +95,9 @@ function App() {
   }
 
   return (
-    <div className="app w-full">
-      <Header />
+    <div className="app w-full text-white">   
+
+      <Header className="mt-5" />
       <main>
 
         <div className="flex flex-col items-center justify-center gap-5 m-10 z-10">
@@ -111,8 +107,8 @@ function App() {
 
               <div className="mb-3">
                 <select required defaultValue={'any'}
-                  onChange={(e) => { setcategory(e.target.value) }}
-                  className="bg-gray-50 border p-3 border-gray-300 shadow-xl text-gray-900 text-sm text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-500 dark:border-gray-300 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={(e) => { setcategory(e.target.value); setloaded(false); }}
+                  className="border w-full p-3 shadow-xl text-center rounded-lg focus:ring-blue-500 block font-semibold text-md dark:text-black bg-amber-400 border-gray-600 placeholder-gray-40 focus:border-blue-500"
                   aria-label="Default select example"
                 >
                   <option value="any">Any (Default)</option>
@@ -146,7 +142,7 @@ function App() {
               <div className="mb-3">
                 <select required defaultValue={'hard'}
                   onChange={(e) => { setdifficulty(e.target.value) }}
-                  className="bg-gray-50 border w-full p-3 shadow-xl border-gray-300 text-gray-900 text-sm text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="border w-full p-3 shadow-xl text-center rounded-lg focus:ring-blue-500 block font-semibold text-md dark:text-black bg-amber-400 border-gray-600 placeholder-gray-40 focus:border-blue-500"
                   aria-label="Default select example"
                 >
                   <option value="easy">Easy</option>
@@ -156,7 +152,7 @@ function App() {
               </div>
 
 
-              {questions.length > 0 && questions[0].difficulty === difficulty ?
+              {questions.length > 0 && questions[0].difficulty === difficulty && loaded ?
                 <button className="w-full text-white font-bold text-md uppercase bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2" onClick={startquestioncount}>
                   Start
                 </button> :
