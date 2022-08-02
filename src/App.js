@@ -224,8 +224,8 @@ function App() {
 
               <div>
                 {
-                  score < 3 ? <img alt="Score Image" src="sad.jpg" className="h-72 m-5" /> :
-                    ((score === 3) ? <img alt="Score Image" src="medium.jpg" className="h-72 m-5" /> : <img alt="Score Image" src="very happy.jpg" className="h-72 m-5" />)
+                  score < 3 ? <img alt="Sad mickey" src="sad.jpg" className="h-72 m-5" /> :
+                    ((score === 3) ? <img alt="happy mickey" src="medium.jpg" className="h-72 m-5" /> : <img alt="super happy mickey" src="very happy.jpg" className="h-72 m-5" />)
                 }
 
               </div>
