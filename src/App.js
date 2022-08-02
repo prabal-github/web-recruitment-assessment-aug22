@@ -201,7 +201,7 @@ function App() {
                 })}
               </div>
               {!showAnswer ? <button className="w-full mt-5 content-center text-white font-bold text-md uppercase bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
-                <div onClick={() => setshowAnswer(true)}>Check Answer</div>
+                <div onClick={() => setshowAnswer(true)}>Show Answer</div>
               </button> :
                 <div className="text-2xl font-bold text-center">
                   Answer:- {questions[questionNumber].correct_answer}
