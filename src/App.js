@@ -182,7 +182,7 @@ function App() {
               </div>
               {/* ----- QUESTION ----- */}
               <div className="text-2xl font-bold text-center">
-                {questionNumber + 1}). {questions[questionNumber].question}
+                {questions[questionNumber].question}
               </div>
 
               {/* ----- OPTIONS ----- */}
