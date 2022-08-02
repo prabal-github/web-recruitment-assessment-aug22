@@ -13,10 +13,10 @@ function App() {
   const [showScore, setShowScore] = useState(false);
   const [score, setscore] = useState(0)
   const [selectedOption, setselectedOption] = useState("")
-  const [difficulty, setdifficulty] = useState("medium")
+  const [difficulty, setdifficulty] = useState("hard")
   const [category, setcategory] = useState('any')
   var optns = []
-  
+
   useEffect(() => {
     const opentdb = require('opentdb-api');
     var apiStart = true;
@@ -35,10 +35,13 @@ function App() {
         });
       }
     });
+    console.log(difficulty);
+    console.log(category);
 
     return () => {
       apiStart = false;
     }
+
 
   }, [start, difficulty, category])
 
@@ -101,61 +104,19 @@ function App() {
       <Header />
       <main>
 
-        <div className="flex flex-col items-center justify-center gap-5 m-10">
+        <div className="flex flex-col items-center justify-center gap-5 m-10 z-10">
 
           {!started ?
             <div className="flex flex-col">
 
               <div className="mb-3">
                 <select required
-                  onChange={(e) => { setdifficulty(e.target.value) }}
-                  className="form-select appearance-none
-                              block
-                              w-full
-                              px-3
-                              py-1.5
-                              text-base
-                              font-normal
-                              text-gray-700
-                              bg-white bg-clip-padding bg-no-repeat
-                              border border-solid border-gray-300
-                              rounded
-                              transition
-                              ease-in-out
-                              m-0
-                              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  onChange={(e) => { setcategory(e.target.value) }}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-500 dark:border-gray-300 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   aria-label="Default select example"
                 >
-                  <option selected disabled>Select Difficulty</option>
-                  <option value="easy">Easy</option>
-                  <option value="medium">Medium</option>
-                  <option value="hard">Hard</option>
-                </select>
-              </div>
-
-
-              <div className="mb-3">
-                <select required
-                  onChange={(e) => { setcategory(e.target.value) }}
-                  className="form-select appearance-none
-                              block
-                              w-full
-                              px-3
-                              py-1.5
-                              text-base
-                              font-normal
-                              text-gray-700
-                              bg-white bg-clip-padding bg-no-repeat
-                              border border-solid border-gray-300
-                              rounded
-                              transition
-                              ease-in-out
-                              m-0
-                              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  aria-label="Default select example"
-                >                                          
                   <option selected disabled>Select Category</option>
-                  <option value="any">Any</option>
+                  <option value="any">Any (Default)</option>
                   <option value="general">General</option>
                   <option value="books">Books</option>
                   <option value="film">Film</option>
@@ -183,7 +144,20 @@ function App() {
                 </select>
               </div>
 
-              {questions.length > 0 ?
+              <div className="mb-3">
+                <select required
+                  onChange={(e) => { setdifficulty(e.target.value) }}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  aria-label="Default select example"
+                >
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option selected value="hard">Hard</option>
+                </select>
+              </div>
+
+
+              {questions.length > 0 && questions[0].difficulty == difficulty?
                 <button className="w-full text-white font-bold text-md uppercase bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2" onClick={startquestioncount}>
                   Start
                 </button> :
@@ -205,7 +179,7 @@ function App() {
 
             <div className="flex flex-col gap-4">
               <div className="text-2xl font-bold text-center">
-                {'('+(questionNumber + 1)+'/5)'}
+                {'(' + (questionNumber + 1) + '/5)'}
               </div>
               {/* ----- QUESTION ----- */}
               <div className="text-2xl font-bold text-center">
@@ -225,6 +199,9 @@ function App() {
                 })}
               </div>
 
+              <button className="w-full mt-5 content-center text-white font-bold text-md uppercase bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
+                <div onClick={nextquestion}>Check Answer</div>
+              </button>
               <button className="w-full mt-5 content-center text-white font-bold text-md uppercase bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 rounded-lg px-5 py-2.5 text-center mr-2 mb-2">
                 <div onClick={nextquestion}>Next</div>
               </button>
