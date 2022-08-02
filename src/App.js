@@ -107,12 +107,12 @@ function App() {
         <div className="flex flex-col items-center justify-center gap-5 m-10 z-10">
 
           {!started ?
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-3 w-64">
 
               <div className="mb-3">
                 <select required defaultValue={'any'}
                   onChange={(e) => { setcategory(e.target.value) }}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-500 dark:border-gray-300 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border p-3 border-gray-300 shadow-xl text-gray-900 text-sm text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-500 dark:border-gray-300 dark:placeholder-gray-200 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   aria-label="Default select example"
                 >
                   <option value="any">Any (Default)</option>
@@ -146,7 +146,7 @@ function App() {
               <div className="mb-3">
                 <select required defaultValue={'hard'}
                   onChange={(e) => { setdifficulty(e.target.value) }}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border w-full p-3 shadow-xl border-gray-300 text-gray-900 text-sm text-center rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   aria-label="Default select example"
                 >
                   <option value="easy">Easy</option>
